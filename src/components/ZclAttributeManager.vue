@@ -334,7 +334,7 @@ export default {
         },
         {
           name: 'included',
-          label: 'On/Off',
+          label: 'Enabled',
           field: 'included',
           align: 'left',
         },
