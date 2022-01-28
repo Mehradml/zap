@@ -31,8 +31,8 @@ jobs:
       - run: npm rebuild libxmljs --update-binary
       - run: npm run build-spa
       - run: npm run lint
-      - run: npm run test
       - run: npm run test:e2e-ci
+      - run: npm run test
       - run: xvfb-run -a npm run self-check
       - run: npm run gen
       - run: npm run genmatter
