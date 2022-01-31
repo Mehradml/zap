@@ -19,16 +19,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          start: xvfb-run -a npm run zap-devserver | npx quasar dev
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: sudo apt-get update
       - run: sudo apt-get install --fix-missing libpixman-1-dev libcairo-dev libsdl-pango-dev libjpeg-dev libgif-dev xvfb
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: xvfb-run -a npm run zap-devserver | npx quasar dev
       - run: npm ci
       - run: npm run version-stamp
       - run: npm rebuild canvas --update-binary
