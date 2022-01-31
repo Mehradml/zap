@@ -34,8 +34,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: npx quasar dev
-          start: xvfb-run -a npm run zap-devserver
+          start: xvfb-run -a npm run zap-devserver | npx quasar dev
       - run: npm run test
       - run: xvfb-run -a npm run self-check
       - run: npm run gen
