@@ -28,7 +28,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          start: xvfb-run -a npm run zap-devserver | npx quasar dev
+          start: xvfb-run -a npm run zap-devserver | quasar dev
       - run: npm ci
       - run: npm run version-stamp
       - run: npm rebuild canvas --update-binary
