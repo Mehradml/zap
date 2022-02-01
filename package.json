@@ -26,7 +26,7 @@
     "test:unit:watch": "jest --watch",
     "test:unit:watchAll": "jest --watchAll",
     "test:e2e": "npm run zap-devserver | start-test \"quasar dev\" http-get://localhost:8080 \"cypress open\"",
-    "test:e2e-ci": "xvfb-run -a npm run zap-devserver | \"quasar dev\" http-get://localhost:8080",
+    "test:e2e-ci": "xvfb-run -a npm run zap-devserver | start-test \"quasar dev\" http-get://localhost:8080",
     "postinstall": "electron-builder install-app-deps && husky install && npm rebuild canvas --update-binary",
     "wpzap": "npm run build-spa && npm run build-backend && npm run dist-mac && npm run apack:mac",
     "zap": "node src-script/zap-start.js --logToStdout --gen ./test/gen-template/zigbee/gen-templates.json",
