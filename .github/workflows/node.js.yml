@@ -25,11 +25,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: sudo apt-get update
       - run: sudo apt-get install --fix-missing libpixman-1-dev libcairo-dev libsdl-pango-dev libjpeg-dev libgif-dev xvfb
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          command: xvfb-run -a npm run test:e2e-ci
-          wait-on: 'http://localhost:9070, http://localhost:8080'
       - run: npm ci
       - run: npm run version-stamp
       - run: npm rebuild canvas --update-binary
@@ -37,6 +32,7 @@ jobs:
       - run: npm run build-spa
       - run: npm run lint
       - run: npm run test
+      - run: xvfb-run -a npm run test:e2e-ci
       - run: xvfb-run -a npm run self-check
       - run: npm run gen
       - run: npm run genmatter
