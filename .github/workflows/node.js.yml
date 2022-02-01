@@ -25,19 +25,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: sudo apt-get update
       - run: sudo apt-get install --fix-missing libpixman-1-dev libcairo-dev libsdl-pango-dev libjpeg-dev libgif-dev xvfb
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          start: xvfb-run -a npm run test:e2e-ci
-          wait-on: http://localhost:9070/
-          config_file: cypress.json
-          spec: "cypress/integration/**/*"
       - run: npm ci
       - run: npm run version-stamp
       - run: npm rebuild canvas --update-binary
       - run: npm rebuild libxmljs --update-binary
       - run: npm run build-spa
       - run: npm run lint
+      - run: xvfb-run -a npm run test:e2e-ci
       - run: npm run test
       - run: xvfb-run -a npm run self-check
       - run: npm run gen
