@@ -30,6 +30,8 @@ jobs:
         with:
           start: xvfb-run -a npm run test:e2e-ci
           wait-on: http://localhost:9070/
+          config_file: cypress.json
+          spec: "cypress/integration/**/*"
       - run: npm ci
       - run: npm run version-stamp
       - run: npm rebuild canvas --update-binary
