@@ -36,15 +36,11 @@ limitations under the License.
             v-on:click="openDocumentation()"
           />
         </q-toolbar>
-        <div class="q-pa-md" >
-          <q-expansion-item
-            label="Global Options"
-            v-model="isExpanded"
-          >
+        <div class="q-pa-md">
+          <q-expansion-item label="Global Options" v-model="isExpanded">
             <ZclGeneralOptionsBar />
           </q-expansion-item>
         </div>
-       
       </q-header>
       <!-- Not using mobile mode, so breakpoint is set at 0 -->
       <q-drawer
@@ -54,7 +50,9 @@ limitations under the License.
         :breakpoint="0"
         :mini="!leftDrawerOpen || miniState"
       >
-        <zcl-endpoint-manager />
+        <q-scroll-area style="height: 100%">
+          <zcl-endpoint-manager />
+        </q-scroll-area>
       </q-drawer>
       <q-page-container>
         <zcl-cluster-manager />
@@ -108,7 +106,7 @@ export default {
   },
   data() {
     return {
-      isExpanded: false
+      isExpanded: false,
     }
   },
   components: {
