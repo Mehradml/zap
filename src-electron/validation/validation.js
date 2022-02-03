@@ -116,6 +116,10 @@ function isValidNumberString(value) {
   return /^(0x)?[\dA-F]+$/i.test(value) || Number.isInteger(Number(value));
 }
 
+function isValidSignedNumberString(value) {
+  return /^(0x)?[\dA-F]+$/i.test(value) || Number.isInteger(Number(value));
+}
+
 function isValidFloat(value) {
   return !/^0x/i.test(value) && !isNaN(Number(value));
 }
@@ -171,6 +175,7 @@ function checkBoundsFloat(defaultValue, min, max) {
   if (Number.isNaN(max)) max = Number.MAX_VALUE
   return defaultValue >= min && defaultValue <= max
 }
+
 
 // exports
 exports.validateAttribute = validateAttribute

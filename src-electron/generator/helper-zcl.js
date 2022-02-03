@@ -26,6 +26,7 @@ const types = require('../util/types')
 const zclUtil = require('../util/zcl-util')
 const _ = require('lodash')
 
+const fabricIndexType = 'fabric_idx'
 /**
  * This module contains the API for templating. For more detailed instructions, read {@tutorial template-tutorial}
  *
@@ -123,7 +124,7 @@ async function zcl_structs(options) {
       if (i.isArray) {
         st.struct_contains_array = true
       }
-      if (i.type && i.type.toLowerCase() == 'fabric_idx') {
+      if (i.type && i.type.toLowerCase() == fabricIndexType) {
         st.struct_is_fabric_scoped = true
         st.struct_fabric_idx_field = i.label
       }
@@ -407,18 +408,14 @@ async function zcl_events(options) {
 
   let ps = events.map(async (ev) => {
     ev.event_is_fabric_scoped = false
-    ev.event_is_fabric_index_nullable = false
     ev.items = await queryEvent.selectEventFieldsByEventId(
       this.global.db,
       ev.id
     )
     ev.items.forEach((i) => {
-      if (i.type && i.type.toLowerCase() == 'fabric_idx') {
+      if (i.type && i.type.toLowerCase() == fabricIndexType && !i.isNullable) {
         ev.event_is_fabric_scoped = true
         ev.event_fabric_idx_field = i.name
-        if (i.isNullable) {
-          ev.event_is_fabric_index_nullable = true
-        }
       }
     })
   })
