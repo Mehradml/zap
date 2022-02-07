@@ -22,8 +22,9 @@ limitations under the License.
         bordered
         height-hint="500"
         class="shadow-2 zclConfiguratorLayoutHeader"
+        style="z-index: 10000"
       >
-        <q-toolbar bordered class="shadow-2 zclConfiguratorLayoutHeader">
+        <q-toolbar bordered class="zclConfiguratorLayoutHeader">
           <q-toolbar-title v-on:click.ctrl="showVersion">
             Zigbee Cluster Configurator
           </q-toolbar-title>
@@ -35,12 +36,15 @@ limitations under the License.
             label="View Manual"
             v-on:click="openDocumentation()"
           />
+          <q-btn
+            flat
+            label=" Global Options"
+            v-on:click="isExpanded = !isExpanded"
+          />
         </q-toolbar>
-        <div class="q-pa-md">
-          <q-expansion-item label="Global Options" v-model="isExpanded">
-            <ZclGeneralOptionsBar />
-          </q-expansion-item>
-        </div>
+        <q-expansion-item v-model="isExpanded" header-style="display: none;">
+          <ZclGeneralOptionsBar />
+        </q-expansion-item>
       </q-header>
       <!-- Not using mobile mode, so breakpoint is set at 0 -->
       <q-drawer
