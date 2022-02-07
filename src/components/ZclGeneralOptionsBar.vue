@@ -15,7 +15,7 @@ limitations under the License.
 -->
 
 <template>
-  <div class="q-mt-lg">
+  <div class="q-mt-lg q-mx-sm">
     <div class="row">
       <div class="col-md col-sm-12 q-mb-md">
         <div class="vertical-align:middle q-mb-xs">Product Manufacturer</div>

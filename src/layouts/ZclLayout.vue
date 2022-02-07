@@ -113,7 +113,7 @@ limitations under the License.
             bordered
             v-model="drawerRight"
             side="right"
-            class="zindex"
+            class="zindex preview_tab"
           >
             <div class="q-pa-md">
               <q-btn-dropdown
